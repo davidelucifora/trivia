@@ -43,18 +43,26 @@ button:focus-visible {
   border-radius:5%;
 }
 
-/*Testing fade in and out*/
-
-.fade-out{
-  opacity:0;
-  width:0;
-  height:0;
-  transition: width 0.5s 0.5s, height 0.5s 0.5s, opacity 0.5s;
+.card.first-screen{
+  display:flex;
+  flex-flow:column wrap;
 }
 
-.fade-in{
-  opacity:1;
-  width:auto;
-  height:auto;
-  transition: width 0.5s, height 0.5s, opacity 0.5s 0.5s;
+.card.first-screen p, 
+.card.first-screen h1 {
+  margin:0;
 }
+.card.first-screen h3{
+  margin-top:1rem;
+  margin-bottom:0.2rem;
+  font-size:1rem;
+}
+
+#radio-wrapper{
+  display:flex;
+  justify-content:space-evenly;
+  font-size:1rem;
+  margin-bottom:1.5rem;
+  font-weight:800;
+}
+
