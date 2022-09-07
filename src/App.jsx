@@ -12,6 +12,7 @@ function App() {
   const [allQuestions, setAllQuestions] = useState([])
 
 
+
   function startGame() {
 
     setIsGameStarted(true)
@@ -27,18 +28,20 @@ function App() {
   /* Call Api with 5 or 10 questions if user changes noOfQuestions */
   useEffect(() => {
     callAPI(noOfQuestions).then(setAllQuestions)
+
   },[noOfQuestions])
+
 
   return (
     <div className="App">
       
-      { isGameStarted ? <SecondScreen /> : 
+      { isGameStarted ? <SecondScreen 
+      allQuestions = {allQuestions}/> : 
       <FirstScreen 
       handleStartGame={startGame}
       handleNoOfQuestions={handleNoOfQuestions}
       noOfQuestions={noOfQuestions}
       />}
-      <p>{allQuestions.length ? allQuestions[0].question : 'empty array'}</p>
       </div>
       )
   
