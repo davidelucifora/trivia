@@ -40,7 +40,8 @@ function SecondScreen(props) {
         return (
             <button
             onClick={props.handleSelected}
-            className={`answer-btn ${props.isSelected && 'selected'}`}>{props.text}</button>
+            className={`answer-btn ${props.isSelected && 'selected'} 
+            ${props.isWinner && 'winner'} ${props.isLoser && 'loser'}`}>{props.text}</button>
         )
 
     }
@@ -58,31 +59,33 @@ function SecondScreen(props) {
                 text={answer.text}
                 isCorrect={answer.isCorrect}
                 isSelected={answer.isSelected}
-                handleSelected={() => handleSelected(answer.id)}/>
+                isWinner={answer.isWinner}
+                isLoser={answer.isLoser}
+                handleSelected={() => handleSelected(answer.id, answer.questionID)}/>
                 )
             })
             
             /** Handles when answer is selected */
-            function handleSelected(id){
-                
+            function handleSelected(id, questionID){
+
                 setAllQuestions((prevQuestions) => 
+
                 prevQuestions.map(question => {
-                    return {
-                        ...question,
-                        answers : question.answers.map(answer => {
-                            if (id === answer.id) {
+                    if (question.id === questionID){
+                        return {
+                            ...question,
+                            answers:question.answers.map(answer => {
                                 return {
                                     ...answer,
-                                    isSelected : !answer.isSelected
+                                    isSelected : answer.id === id ? !answer.isSelected : false
                                 }
-                            }
-                            else return {...answer,
-                            isSelected:false}
-                        })
+                            })
+                        }
                     }
-                }))
-    
-            }
+                    else return {...question}
+                }
+            )
+                )}
 
             /** Render Question Component */
         return (
@@ -110,13 +113,36 @@ function SecondScreen(props) {
         )
     })
 
-
+function handleCheckAnswers() {
+    setAllQuestions((prevQuestions) => 
+    prevQuestions.map(question => {
+        return {
+            ...question,
+            answers: question.answers.map(answer => {
+                if (answer.isSelected) {
+                    if (answer.isCorrect) return {
+                        ...answer,
+                        isWinner:true}
+                    else return {
+                        ...answer, 
+                        isLoser:true}
+                }
+                else return {
+                    ...answer
+                }
+            })
+        }
+    })
+    )
+}
 
         /* Render the Second Screen*/
 return (
     <div id="second-screen">
             {listAllQuestions} 
-            <button id="checkBtn" className="answer-btn">Check Answers</button>
+            <button id="checkBtn" 
+            className="answer-btn"
+            onClick={handleCheckAnswers}>Check Answers</button>
         </div>
     )
     
