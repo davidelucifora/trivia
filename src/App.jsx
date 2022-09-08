@@ -10,7 +10,7 @@ function App() {
   const [isGameStarted, setIsGameStarted] = useState(false)
   const [noOfQuestions, setNoOfQuestions] = useState('5')
   const [allQuestions, setAllQuestions] = useState([])
-
+  
 
 
   function startGame() {
@@ -31,7 +31,7 @@ function App() {
 
   },[noOfQuestions])
 
-
+/* App Component */
   return (
     <div className="App">
       

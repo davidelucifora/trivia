@@ -27,9 +27,14 @@ button.main-btn{
   color:aquamarine;
 }
 
-button.main-btn:hover{
+button.main-btn:hover, 
+button.winning{
   background-color:aquamarine;
   color:darkslategrey;
+}
+
+button.losing{
+  background-color:coral;
 }
 
 button:focus,
@@ -88,11 +93,21 @@ button:focus-visible {
   gap:0.5rem;
 }
 
-.answer-btn{
+.answer-btn, #check-answers-btn{
   background-color:darkslateblue;
+  color:aquamarine;
 }
-.answer-btn:hover{
+.answer-btn:hover,
+#check-answers-btn:hover{
   background-color:aquamarine;
   color:darkslategray;
+}
+
+.answer-btn.selected{
+  border:2px solid aquamarine;
+}
+
+#check-answers-btn{
+  font-size:1.2rem;
 }
 
