@@ -36,7 +36,8 @@ function App() {
     <div className="App">
       
       { isGameStarted ? <SecondScreen 
-      allQuestions = {allQuestions}/> : 
+      allQuestions = {allQuestions}
+      isGameStarted = {isGameStarted}/> : 
       <FirstScreen 
       handleStartGame={startGame}
       handleNoOfQuestions={handleNoOfQuestions}

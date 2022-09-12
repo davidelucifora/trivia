@@ -4,6 +4,8 @@ import helpers from './../helpers'
 
 function SecondScreen(props) {
 
+    const [isGameStarted, setIsGameStarted] = useState(props.isGameStarted)
+
     /* Reorganise Questions */
 
     const [allQuestions, setAllQuestions] = useState(
@@ -37,11 +39,11 @@ function SecondScreen(props) {
 /* Reusable Answer component */
     function Answer(props) {
 
+
         return (
             <button
             onClick={props.handleSelected}
-            className={`answer-btn ${props.isSelected && 'selected'} 
-            ${props.isWinner && 'winner'} ${props.isLoser && 'loser'}`}>{props.text}</button>
+            className={`answer-btn ${props.style} ${props.isSelected && 'selected'}`}>{props.text}</button>
         )
 
     }
@@ -49,6 +51,7 @@ function SecondScreen(props) {
         /* Reusable question component */
 
     function Question(props) {
+
 
 
         /** List all answer buttons */
@@ -59,8 +62,7 @@ function SecondScreen(props) {
                 text={answer.text}
                 isCorrect={answer.isCorrect}
                 isSelected={answer.isSelected}
-                isWinner={answer.isWinner}
-                isLoser={answer.isLoser}
+                style={answer.style}
                 handleSelected={() => handleSelected(answer.id, answer.questionID)}/>
                 )
             })
@@ -114,25 +116,45 @@ function SecondScreen(props) {
     })
 
 function handleCheckAnswers() {
+
+    setIsGameStarted(!isGameStarted)
+
     setAllQuestions((prevQuestions) => 
     prevQuestions.map(question => {
         return {
             ...question,
             answers: question.answers.map(answer => {
-                if (answer.isSelected) {
-                    if (answer.isCorrect) return {
-                        ...answer,
-                        isWinner:true}
-                    else return {
-                        ...answer, 
-                        isLoser:true}
+                if (answer.isCorrect) {
+                    return {
+                    ...answer,
+                    style:'isCorrect'
                 }
-                else return {
-                    ...answer
+            } 
+                else {
+                    if (answer.isSelected){ 
+                    return {
+                    ...answer,
+                    isSelected:false,
+                    style:'isWrong'}
                 }
-            })
+            else return {...answer}}
+        })
         }
     })
+    )
+
+
+
+}
+
+function CheckGameBtn(props) {
+    return (
+        <button id="checkBtn" className="answer-btn" onClick={props.handleCheckAnswers}>{props.text}</button>
+    )
+}
+function PlayAgainBtn(props) {
+    return (
+        <button id="playAgain" className="answer-btn" onClick={() => {window.location.reload()}}>Play Again</button>
     )
 }
 
@@ -140,9 +162,10 @@ function handleCheckAnswers() {
 return (
     <div id="second-screen">
             {listAllQuestions} 
-            <button id="checkBtn" 
-            className="answer-btn"
-            onClick={handleCheckAnswers}>Check Answers</button>
+            <CheckGameBtn 
+            text={'Check Answers'}
+            handleCheckAnswers={handleCheckAnswers} />
+            {!isGameStarted && <PlayAgainBtn />}
         </div>
     )
     

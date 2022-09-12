@@ -104,19 +104,23 @@ button:focus-visible {
 }
 
 .answer-btn.selected{
-  border:2px solid aquamarine;
+  background-color:lightseagreen;
+}
+
+.isCorrect{
+  background-color:aquamarine;
+  color:darkslateblue;
 }
 
 #check-answers-btn{
   font-size:1.2rem;
 }
 
-.winner{
-  background-color:aquamarine;
-  color:darkslategray
-}
-
-.loser{
+.isWrong{
   background-color:coral;
   color:black;
+}
+
+#playAgain{
+  margin-left:1rem;
 }
