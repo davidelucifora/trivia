@@ -2,7 +2,7 @@
 # Trivia
 A simple Trivia Game in React. Part of Scrimba FrontEnd dev bootcamp.
 
-<p align="center>
+<p align="center">
 [<img width="498" align ="center" alt="Trivia Game Start Screen" src="https://user-images.githubusercontent.com/40455204/194646357-1d3abb22-5548-4db2-96eb-cbdb293782bd.png">](https://davidelucifora.github.io/trivia/)
 
 [<img width="974"  align ="center"  alt="Trivia Game Questions" src="https://user-images.githubusercontent.com/40455204/194646340-867d3867-eb3f-40a5-bfd4-5a927dbb2e1c.png">](https://davidelucifora.github.io/trivia/)
